@@ -1,9 +1,17 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
+type PaystackPayload = {
+  amount: any;
+  email: any;
+  currency: string;
+  callback_url: string;
+  plan?: string; // Optional plan property
+};
+
 export async function POST(req: Request) {
   try {
-    const { amount, email } = await req.json();
+    const { amount, email, isRecurring, interval } = await req.json();
 
     if (!amount || amount < 100) {
       return NextResponse.json(
@@ -19,16 +27,46 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log('Initializing payment with data:', { amount, email });
+    console.log('Initializing payment with data:', { amount, email, isRecurring, interval });
+
+    const basePayload: PaystackPayload = {
+      amount,
+      email,
+      currency: 'KES',
+      callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/verify`,
+    };
+
+    let endpoint = 'https://api.paystack.co/transaction/initialize';
+    let payload: PaystackPayload = basePayload;
+
+    if (isRecurring) {
+      // For recurring payments, we first create a plan
+      const planResponse = await axios.post(
+        'https://api.paystack.co/plan',
+        {
+          name: `${interval} Subscription`,
+          amount,
+          interval,
+          currency: 'KES',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      // Then initialize a subscription transaction
+      payload = {
+        ...basePayload,
+        plan: planResponse.data.data.plan_code,
+      };
+    }
 
     const response = await axios.post(
-      'https://api.paystack.co/transaction/initialize',
-      {
-        amount,
-        email,
-        currency: 'KES',
-        callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/verify`,
-      },
+      endpoint,
+      payload,
       {
         headers: {
           Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,

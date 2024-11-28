@@ -99,6 +99,36 @@ export default function VerifyPayment() {
                     {paymentDetails.channel}
                   </span>
                 </div>
+                {paymentDetails.plan && (
+                  <>
+                    <div className="h-px bg-gray-200 dark:bg-gray-700" />
+                    <div className="pt-2">
+                      <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">
+                        Subscription Details
+                      </h4>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">Plan Name</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {paymentDetails.plan.name}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">Billing Interval</span>
+                          <span className="font-medium text-gray-900 dark:text-white capitalize">
+                            {paymentDetails.plan.interval}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">Plan Code</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {paymentDetails.plan.plan_code}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             )}
           </div>

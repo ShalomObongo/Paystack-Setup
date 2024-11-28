@@ -9,6 +9,8 @@ export default function PaymentForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [paymentUrl, setPaymentUrl] = useState('');
+  const [isRecurring, setIsRecurring] = useState(false);
+  const [interval, setInterval] = useState('daily');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +24,8 @@ export default function PaymentForm() {
       const response = await axios.post('/api/initialize-payment', {
         amount: parseFloat(amount) * 100,
         email,
+        isRecurring,
+        interval: isRecurring ? interval : undefined,
       });
 
       console.log('Response from server:', response.data);
@@ -97,6 +101,41 @@ export default function PaymentForm() {
               />
             </div>
           </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="recurring"
+                checked={isRecurring}
+                onChange={(e) => setIsRecurring(e.target.checked)}
+                className="h-4 w-4 text-emerald-500 focus:ring-emerald-500 border-gray-300 rounded"
+              />
+              <label htmlFor="recurring" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                Make this a recurring payment
+              </label>
+            </div>
+          </div>
+
+          {isRecurring && (
+            <div className="space-y-2">
+              <label htmlFor="interval" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Billing Interval
+              </label>
+              <select
+                id="interval"
+                value={interval}
+                onChange={(e) => setInterval(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800 dark:text-white transition-colors"
+              >
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="annually">Annually</option>
+              </select>
+            </div>
+          )}
 
           <button
             type="submit"

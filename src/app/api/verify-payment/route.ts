@@ -13,7 +13,8 @@ export async function GET(req: Request) {
       );
     }
 
-    const response = await axios.get(
+    // First verify the transaction
+    const transactionResponse = await axios.get(
       `https://api.paystack.co/transaction/verify/${reference}`,
       {
         headers: {
@@ -23,7 +24,26 @@ export async function GET(req: Request) {
       }
     );
 
-    return NextResponse.json(response.data);
+    const transactionData = transactionResponse.data.data;
+    console.log('Transaction Data:', JSON.stringify(transactionData, null, 2));
+
+    // If this is a subscription payment, use plan_object for plan details
+    if (transactionData.plan && transactionData.plan_object) {
+      transactionData.plan = {
+        id: transactionData.plan_object.id,
+        name: transactionData.plan_object.name,
+        plan_code: transactionData.plan_object.plan_code,
+        description: transactionData.plan_object.description,
+        amount: transactionData.plan_object.amount,
+        interval: transactionData.plan_object.interval,
+        currency: transactionData.plan_object.currency
+      };
+    }
+
+    return NextResponse.json({
+      status: true,
+      data: transactionData
+    });
   } catch (error: any) {
     console.error('Payment verification error:', error.response?.data || error.message);
     return NextResponse.json(

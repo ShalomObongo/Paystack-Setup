@@ -54,6 +54,16 @@
     <td>Lightning-fast processing</td>
     <td>Automated status updates</td>
   </tr>
+  <tr>
+    <td>💫 <b>Recurring Payments</b></td>
+    <td>📊 <b>Subscription Management</b></td>
+    <td>🔔 <b>Payment Notifications</b></td>
+  </tr>
+  <tr>
+    <td>Daily, weekly, monthly & more</td>
+    <td>Track & manage subscriptions</td>
+    <td>Real-time payment alerts</td>
+  </tr>
 </table>
 
 ## 🚀 Quick Start
@@ -82,6 +92,49 @@
    npm run dev
    ```
    Visit [http://localhost:3000](http://localhost:3000) 🎉
+
+## 💳 Payment Features
+
+### One-Time Payments
+- Quick and secure one-time payment processing
+- Support for multiple payment methods
+- Instant payment verification
+- Detailed transaction receipts
+
+### Recurring Payments
+- Flexible subscription intervals (daily, weekly, monthly, quarterly, annually)
+- Automated subscription management
+- Secure card tokenization
+- Subscription status tracking
+- Easy subscription cancellation
+
+### Payment Security
+- PCI DSS compliant
+- 3D Secure authentication
+- Fraud detection and prevention
+- Secure payment data handling
+
+## 🔧 Usage
+
+### Processing a Payment
+
+1. Fill in the payment amount and email
+2. Choose between one-time or recurring payment
+3. For recurring payments, select your preferred billing interval:
+   - Daily
+   - Weekly
+   - Monthly
+   - Quarterly
+   - Annually
+4. Click "Initialize Payment" to proceed
+5. Complete the payment on the secure Paystack checkout page
+
+### Managing Subscriptions
+
+- View subscription details after payment
+- Track billing intervals and amounts
+- Monitor subscription status
+- Cancel or modify subscriptions through Paystack dashboard
 
 ## 🛠️ Tech Stack
 
