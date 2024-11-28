@@ -1,12 +1,12 @@
-# 💫 Shalom's Payment Gateway
+# 💫 Quantum-Pay
 
 <div align="center">
-  <img src="public/logo.svg" alt="Payment Gateway Logo" width="120" height="120"/>
+  <img src="public/logo.svg" alt="Quantum-Pay Logo" width="120" height="120"/>
 
-  <h1>Shalom's Payment Gateway</h1>
+  <h1>Quantum-Pay</h1>
   
   <p>
-    <em>A modern, secure payment processing solution powered by Next.js and Paystack</em>
+    <em>Next-generation payment processing powered by quantum-speed technology</em>
   </p>
 
   <a href="https://nextjs.org">
@@ -35,23 +35,23 @@
 
 <table>
   <tr>
-    <td>🔒 <b>Secure Payments</b></td>
+    <td>🔒 <b>Quantum Security</b></td>
     <td>🌙 <b>Dark Mode</b></td>
     <td>📱 <b>Responsive Design</b></td>
   </tr>
   <tr>
-    <td>Industry-standard security with Paystack</td>
+    <td>State-of-the-art payment security</td>
     <td>Sleek dark theme support</td>
     <td>Beautiful on all devices</td>
   </tr>
   <tr>
     <td>💳 <b>Multiple Methods</b></td>
-    <td>⚡ <b>Real-time Processing</b></td>
-    <td>🔄 <b>Webhooks</b></td>
+    <td>⚡ <b>Quantum Speed</b></td>
+    <td>🔄 <b>Smart Webhooks</b></td>
   </tr>
   <tr>
     <td>Cards, transfers, mobile money</td>
-    <td>Instant payment verification</td>
+    <td>Lightning-fast processing</td>
     <td>Automated status updates</td>
   </tr>
 </table>
@@ -60,8 +60,8 @@
 
 1. **Clone and Install**
    ```bash
-   git clone https://github.com/ShalomObongo/payment-gateway.git
-   cd payment-gateway
+   git clone https://github.com/ShalomObongo/paystack-setup.git
+   cd quantum-pay
    npm install
    ```
 
@@ -104,9 +104,9 @@
 
 ## 🔒 Security
 
-- ✅ **API Key Management** - Secure credential handling
-- ✅ **Input Validation** - Comprehensive data validation
-- ✅ **Error Handling** - Graceful error management
+- ✅ **Quantum Encryption** - Advanced security protocols
+- ✅ **Smart Validation** - AI-powered data validation
+- ✅ **Error Shield** - Intelligent error management
 - ✅ **HTTPS** - Secure communication
 - ✅ **Webhooks** - Signature verification
 
@@ -115,7 +115,7 @@
 1. Enter amount and email
 2. Click "Initialize Payment"
 3. Complete payment via Paystack
-4. Automatic verification
+4. Quantum verification
 5. View transaction details
 
 ## 📂 Structure

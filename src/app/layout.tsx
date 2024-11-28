@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shalom's Payment Gateway",
-  description: "Modern payment processing solution by Shalom",
+  title: "Quantum-Pay | Next-Gen Payments",
+  description: "Experience quantum-speed payment processing",
   icons: {
     icon: '/favicon.ico',
   },
@@ -27,13 +27,13 @@ export default function RootLayout({
               <div className="flex items-center space-x-3">
                 <Image 
                   src="/logo.svg" 
-                  alt="Shalom's Logo" 
+                  alt="Quantum-Pay Logo" 
                   width={40} 
                   height={40}
                   className="dark:invert"
                 />
                 <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-500">
-                  Shalom's PayGate
+                  Quantum-Pay
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -62,7 +62,7 @@ export default function RootLayout({
                   className="dark:invert"
                 />
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  Shalom's Payment Solutions
+                  Quantum-Pay
                 </span>
               </div>
               <div className="text-sm text-gray-500 dark:text-gray-500">
