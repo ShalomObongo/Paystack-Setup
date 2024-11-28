@@ -20,13 +20,12 @@ export default function PaymentForm() {
       console.log('Submitting payment with data:', { amount, email });
       
       const response = await axios.post('/api/initialize-payment', {
-        amount: parseFloat(amount) * 100, // Convert to cents
+        amount: parseFloat(amount) * 100,
         email,
       });
 
       console.log('Response from server:', response.data);
 
-      // Check if we have the authorization_url in the response data
       if (response.data?.status && response.data?.data?.authorization_url) {
         const redirectUrl = response.data.data.authorization_url;
         console.log('Payment URL received:', redirectUrl);
@@ -44,73 +43,101 @@ export default function PaymentForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center">Make Payment</h2>
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
-          {error}
-        </div>
-      )}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 mb-2">
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="amount" className="block text-gray-700 mb-2">
-            Amount (KES)
-          </label>
-          <input
-            type="number"
-            id="amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter amount in KES"
-            required
-            min="1"
-            step="0.01"
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors ${
-            loading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
-        >
-          {loading ? 'Processing...' : 'Initialize Payment'}
-        </button>
-      </form>
-
-      {paymentUrl && (
-        <div className="mt-4">
-          <a
-            href={paymentUrl}
-            target="_self"
-            className="block w-full text-center bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = paymentUrl;
-            }}
-          >
-            Proceed to Payment
-          </a>
-          <p className="mt-2 text-sm text-gray-600 text-center">
-            Click the button above to proceed with your payment
+    <div className="max-w-md mx-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 space-y-6">
+        <div className="space-y-2 text-center">
+          <h2 className="text-3xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-500">
+            Make Payment
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400">
+            Secure payment processing with Paystack
           </p>
         </div>
-      )}
+
+        {error && (
+          <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800 dark:text-white transition-colors"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="amount" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Amount (KES)
+            </label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                KES
+              </span>
+              <input
+                type="number"
+                id="amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="w-full pl-14 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800 dark:text-white transition-colors"
+                placeholder="0.00"
+                required
+                min="1"
+                step="0.01"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-3 px-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-lg 
+              hover:from-emerald-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 
+              transition-all duration-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </span>
+            ) : (
+              'Initialize Payment'
+            )}
+          </button>
+        </form>
+
+        {paymentUrl && (
+          <div className="space-y-4">
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
+            <div className="space-y-3">
+              <button
+                onClick={() => window.location.href = paymentUrl}
+                className="w-full py-3 px-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-lg 
+                  hover:from-emerald-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 
+                  transition-all duration-200"
+              >
+                Proceed to Payment
+              </button>
+              <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                Click the button above to complete your payment securely
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
