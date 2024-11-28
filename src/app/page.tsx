@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PaymentForm from './components/PaymentForm';
 
 export default function Home() {
   return (
@@ -47,6 +48,12 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-center mb-8">
+            Paystack Payment Integration
+          </h1>
+          <PaymentForm />
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
