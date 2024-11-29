@@ -8,7 +8,6 @@ export default function PaymentForm() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [paymentUrl, setPaymentUrl] = useState('');
   const [isRecurring, setIsRecurring] = useState(false);
   const [interval, setInterval] = useState('daily');
 
@@ -16,7 +15,6 @@ export default function PaymentForm() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setPaymentUrl('');
 
     try {
       console.log('Submitting payment with data:', { amount, email });
@@ -32,16 +30,16 @@ export default function PaymentForm() {
 
       if (response.data?.status && response.data?.data?.authorization_url) {
         const redirectUrl = response.data.data.authorization_url;
-        console.log('Payment URL received:', redirectUrl);
-        setPaymentUrl(redirectUrl);
+        console.log('Redirecting to payment URL:', redirectUrl);
+        window.location.href = redirectUrl;
       } else {
         console.error('Invalid response structure:', response.data);
         setError('Invalid response from payment server');
+        setLoading(false);
       }
     } catch (err: any) {
       console.error('Payment error:', err.response?.data || err);
       setError(err.response?.data?.message || 'An error occurred');
-    } finally {
       setLoading(false);
     }
   };
@@ -157,25 +155,6 @@ export default function PaymentForm() {
             )}
           </button>
         </form>
-
-        {paymentUrl && (
-          <div className="space-y-4">
-            <div className="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
-            <div className="space-y-3">
-              <button
-                onClick={() => window.location.href = paymentUrl}
-                className="w-full py-3 px-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium rounded-lg 
-                  hover:from-emerald-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 
-                  transition-all duration-200"
-              >
-                Proceed to Payment
-              </button>
-              <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-                Click the button above to complete your payment securely
-              </p>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

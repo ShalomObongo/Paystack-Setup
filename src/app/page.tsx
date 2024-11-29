@@ -9,39 +9,39 @@ export default function Home() {
           <div className="flex justify-center mb-6">
             <Image 
               src="/logo.svg" 
-              alt="Shalom's Logo" 
-              width={80} 
-              height={80}
+              alt="Coffee Cup" 
+              width={100} 
+              height={100}
               className="dark:invert"
             />
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-teal-500">
-              Welcome to Quantum-Pay
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-500">
+              Buy Me a Coffee
             </span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Experience lightning-fast payments with quantum-speed processing.
-            Your transactions are protected with state-of-the-art security.
+            If you enjoy my work and would like to support me, consider buying me a coffee! 
+            Your support helps me continue creating amazing content.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>Quantum Security</span>
+              <span>Quick & Easy</span>
             </div>
             <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
-              <span>Lightning Speed</span>
+              <span>Support Creator</span>
             </div>
             <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+              <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>Multiple Methods</span>
+              <span>Secure Payment</span>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <div className="relative flex justify-center">
             <span className="bg-white dark:bg-gray-900 px-4 text-sm text-gray-500 dark:text-gray-400">
-              Initialize Payment
+              Choose Your Coffee
             </span>
           </div>
         </div>
